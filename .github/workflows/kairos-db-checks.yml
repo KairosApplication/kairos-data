@@ -1,0 +1,66 @@
+name: Kairos Database Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for exposed secrets
+        shell: bash
+        run: |
+          echo "Checking for exposed secrets..."
+
+          if grep -RInE 'mongodb\+srv://[^<][^[:space:]]+:[^<][^[:space:]]+@' . --exclude-dir=.git; then
+            echo "Possible MongoDB URI with real credentials found."
+            exit 1
+          fi
+
+          if grep -RInE 'password=|senha=|MONGO_URI=.*@|POSTGRES_PASSWORD=.*[^<]' . --exclude-dir=.git --exclude=".env.example"; then
+            echo "Possible exposed secret found."
+            exit 1
+          fi
+
+          echo "No exposed secrets found."
+
+  validate-postgresql-artifacts:
+    name: Validate PostgreSQL artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate postgres folder exists
+        shell: bash
+        run: |
+          test -d postgres
+
+      - name: Validate SQL files exist
+        shell: bash
+        run: |
+          find postgres -name "*.sql" | grep -q .
+
+      - name: Validate SQL files are not empty
+        shell: bash
+        run: |
+          for file in $(find postgres -name "*.sql"); do
+            if [ ! -s "$file" ]; then
+              echo "Empty SQL file found: $file"
+              exit 1
+            fi
+          done
+
+          echo "PostgreSQL artifacts validated."
