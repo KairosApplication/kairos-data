@@ -32,6 +32,5 @@ Não colocar a connection string real do MongoDB Atlas no GitHub.
 
 Exemplo do que NÃO deve subir:
 
-mongodb+srv://usuario:senha@cluster...
-
-A connection string real deve ficar em arquivo .env local.
+```text
+MONGO_URI real do MongoDB Atlas com usuário e senha
