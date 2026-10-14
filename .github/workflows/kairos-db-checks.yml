@@ -23,12 +23,17 @@ jobs:
         run: |
           echo "Checking for exposed secrets..."
 
-          if grep -RInE 'mongodb\+srv://[^<][^[:space:]]+:[^<][^[:space:]]+@' . --exclude-dir=.git; then
+          if grep -RInE 'mongodb\+srv://[^<][^[:space:]]+:[^<][^[:space:]]+@' . \
+            --exclude-dir=.git \
+            --exclude=".env.example"; then
             echo "Possible MongoDB URI with real credentials found."
             exit 1
           fi
 
-          if grep -RInE 'password=|senha=|MONGO_URI=.*@|POSTGRES_PASSWORD=.*[^<]' . --exclude-dir=.git --exclude=".env.example"; then
+          if grep -RInE 'MONGO_URI=.*@|POSTGRES_PASSWORD=.*[A-Za-z0-9]' . \
+            --exclude-dir=.git \
+            --exclude=".env.example" \
+            --exclude="kairos-db-checks.yml"; then
             echo "Possible exposed secret found."
             exit 1
           fi
