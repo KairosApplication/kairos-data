@@ -51,7 +51,9 @@ CREATE TABLE Employees
     id SERIAL PRIMARY KEY,
     users_id INT UNIQUE NOT NULL REFERENCES Users (id),
     company_id INT NOT NULL REFERENCES Companies (id),
-    position VARCHAR(100) NOT NULL
+    position VARCHAR(100) NOT NULL CHECK (
+        position IN ('MANAGER', 'STOCKER', 'CASHIER')
+    )
 );
 
 CREATE TABLE Inventories
