@@ -22,3 +22,12 @@ Scripts e documentação das collections do MongoDB Atlas.
 
 docs/
 Documentação do banco, regras de negócio e dicionário de dados.
+
+<!-- docs-bot:start -->
+## Documentação
+
+- [Kairos | Entregas restantes de Modelagem e Engenharia de Dados](docs/README.md)
+- [Kairos — Procedimento e evidência de backup e recuperação](docs/backup_recuperacao.md)
+- [Kairos | Contrato de integração DAU com backend](docs/integracao_dau_backend.md)
+- [Kairos | Revisão de modelagem, cardinalidades e 3FN](docs/normalizacao_cardinalidades.md)
+<!-- docs-bot:end -->
