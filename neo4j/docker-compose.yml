@@ -1,0 +1,15 @@
+services:
+  neo4j:
+    image: neo4j:5.26-community
+    container_name: kairos-neo4j
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    environment:
+      NEO4J_AUTH: "neo4j/${NEO4J_PASSWORD:?Configure NEO4J_PASSWORD no arquivo .env}"
+    volumes:
+      - kairos_neo4j_data:/data
+
+volumes:
+  kairos_neo4j_data:
