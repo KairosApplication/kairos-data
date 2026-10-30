@@ -84,7 +84,7 @@
 
 -- ============================================================
 
-select * from users
+
 
 BEGIN;
 
@@ -300,6 +300,8 @@ FROM generate_series(1,50000) g;
 
 -- usuários 1..50.000
 
+-- positions compatíveis com a API: MANAGER, STOCKER e CASHIER
+
 -- ============================================================
 
 
@@ -313,15 +315,10 @@ SELECT
     g,
 
     ((g-1)%100)+1,
-
     CASE
-
         WHEN ((((g-1)/100)::int) % 20) = 0 THEN 'MANAGER'
-
         WHEN ((((g-1)/100)::int) % 5) = 0 THEN 'CASHIER'
-
         ELSE 'STOCKER'
-
     END
 
 FROM generate_series(1,50000) g;
@@ -371,6 +368,7 @@ FROM generate_series(1,50000) g;
 -- ============================================================
 
 -- 9) SHELF_EMPLOYEES - 50.000
+-- Prateleiras e funcionarios pertencem a mesma empresa
 
 -- ============================================================
 
@@ -378,8 +376,10 @@ FROM generate_series(1,50000) g;
 
 INSERT INTO Shelf_Employees (id, shelf_id, employee_id)
 
-SELECT g, g, g
-
+SELECT
+    g,
+    (((g-1)%100) * 500) + ((g-1)/100) + 1,
+    g
 FROM generate_series(1,50000) g;
 
 
@@ -387,6 +387,7 @@ FROM generate_series(1,50000) g;
 -- ============================================================
 
 -- 10) EMPLOYEE_AISLES - 50.000
+-- Corredores e funcionarios pertencem a mesma empresa
 
 -- ============================================================
 
@@ -398,10 +399,9 @@ SELECT
 
     g,
 
-    (((g-1)%10000)+1),
-
+    (((g-1)%100) * 100)
+    + (((((g-1)/100)%100) + (((g-1)/100)/100))%100) + 1,
     g
-
 FROM generate_series(1,50000) g;
 
 
@@ -558,6 +558,8 @@ CROSS JOIN LATERAL (SELECT c*1000+k AS g) x;
 
 -- Relações sempre dentro da mesma empresa.
 
+-- employee_id sempre aponta para um funcionário STOCKER.
+
 -- ============================================================
 
 
@@ -574,7 +576,7 @@ SELECT
 
     (c*10) + ((r-1)%10)+1,
 
-    (c+1) + (((((r-1)%400) + (((r-1)%400)/4) + 1)) * 100),
+    (c+1) + ((((r-1)%400) + (((r-1)%400)/4) + 1) * 100),
 
     (c*500) + ((r-1)%500)+1,
 
@@ -598,6 +600,8 @@ CROSS JOIN LATERAL (SELECT c*500+r AS g) x;
 
 -- 16) ALERTS - 20.000
 
+-- employee_id sempre aponta para um funcionário STOCKER.
+
 -- ============================================================
 
 
@@ -612,7 +616,7 @@ SELECT
 
     DATE '2025-01-01' + ((g*13)%600),
 
-    (c+1) + (((((r-1)%400) + (((r-1)%400)/4) + 1)) * 100),
+    (c+1) + ((((r-1)%400) + (((r-1)%400)/4) + 1) * 100),
 
     (c*500) + ((r*7-1)%500)+1,
 
@@ -844,7 +848,7 @@ COMMIT;
 
 
 
--- Validações rápidas de unicidade esperadas: todas devem retornar 0.
+-- -- Validações rápidas de unicidade esperadas: todas devem retornar 0.
 
 -- SELECT 'duplicate_cpf' AS check_name, COUNT(*) AS problems
 
