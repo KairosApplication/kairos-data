@@ -1,5 +1,7 @@
 # Kairos | Entregas restantes de Modelagem e Engenharia de Dados
 
+Preparação segura para a feira: veja [demo_datas.md](demo_datas.md) (datas recentes, KPIs de 14 dias e validação em cópia isolada).
+
 Este pacote contém **scripts incrementais** para o schema PostgreSQL do Kairos. Foi elaborado a partir dos nomes e campos dos scripts de dataload e rotinas compartilhados. **Não substitui o schema existente nem executa a carga de dados novamente.**
 
 ## Ordem de execução no pgAdmin / DBeaver
