@@ -1,5 +1,13 @@
 # Testes executados em 02/11/2026
 
+## Preparação completa sem backup — teste adicional
+
+Gerado `build/kairos_demo_setup.sql` com `python postgres/build_demo_setup.py --output build/kairos_demo_setup.sql`. O arquivo foi executado integralmente via psql com ON_ERROR_STOP em um segundo container novo (`kairos-demo-setup-test`, PostgreSQL 17, sem rede, sem volumes), banco inicialmente vazio. Resultado: código 0; estrutura, carga, views originais, KPIs, preparação temporal, ANALYZE e validações concluídos.
+
+Contagens finais: 25.000 compras, 50.000 reposições, 20.000 alertas. KPIs: 15.000 vendas concluídas e 50.000 reposições. Antes/depois iguais; zero alertas com resolução anterior à abertura; quatro checks adicionais e sete checks originais multiempresa com zero problemas. O teste A/B/C/D foi repetido nesse novo ambiente e passou (+1 compra/+20 receita, demais empresas idênticas, status excluídos, ROLLBACK).
+
+Instalador recusou execução no banco local `postgres` e recusou uma segunda carga no `kairos_demo` populado. Não houve recarga nem alteração dessas bases após a recusa. O gerador foi verificado com Python; o validador estático do repositório também passou. Esse teste usa os mesmos bytes SQL destinados ao pgAdmin, mas a interface do pgAdmin, a conexão do backend, o login e o dashboard reais não foram operados: não há acesso a esses aplicativos no escopo conectado. As ações manuais exatas estão em `demo_datas.md`.
+
 PostgreSQL 17 em Docker local, container `kairos-demo-sql-test`, `--network none`, sem volumes ou conexão com produção. Schema, procedures/triggers e dataload originais foram executados integralmente; depois views originais e novas views, preparação e validações. Não foram usados backups ou credenciais externos.
 
 - Carga original: 1.000.000 registros de negócio.
