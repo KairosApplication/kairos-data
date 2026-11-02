@@ -14,7 +14,11 @@ BEGIN
 END $$;
 
 -- Serializa preparacoes; bloqueia escritas concorrentes ate o commit.
-LOCK TABLE Purchases, Restockings, Alerts IN SHARE ROW EXCLUSIVE MODE;
+-- Bloco PostgreSQL nativo: o parser SQL generico do CI nao suporta LOCK TABLE.
+DO $$
+BEGIN
+    LOCK TABLE Purchases, Restockings, Alerts IN SHARE ROW EXCLUSIVE MODE;
+END $$;
 CREATE TABLE IF NOT EXISTS kairos_demo_date_runs (
     reference_date date PRIMARY KEY,
     prepared_at timestamptz NOT NULL DEFAULT current_timestamp,
