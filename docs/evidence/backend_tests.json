@@ -1,0 +1,361 @@
+{
+  "date": "2026-11-02",
+  "suites": [
+    {
+      "suite": "com.kairos.kairosapipostgres.config.JwtSecurityTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.config.OpenApiIntegrationTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.config.PostgresAuditInitializerTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.AisleControllerIntegrationTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.AlertControllerIntegrationTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.AuthControllerIntegrationTest",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.CategoryControllerIntegrationTest",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.CustomerControllerIntegrationTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.CustomerRecommendationIntegrationTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.EmployeeAisleControllerIntegrationTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.EmployeeControllerIntegrationTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.InventoryControllerIntegrationTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.ProductCompanyWritesIntegrationTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.ProductControllerIntegrationTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.ProductShelfControllerIntegrationTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.PurchaseControllerIntegrationTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.RedisSessionIntegrationTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.RestockingControllerIntegrationTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.SectorControllerIntegrationTest",
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.ShelfControllerIntegrationTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.ShelfEmployeeControllerIntegrationTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.StoreMapControllerIntegrationTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.controller.UserControllerIntegrationTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.DailyActivityPostgresIntegrationTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.dto.response.RestockingOptionsResponseTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.FlywaySchemaIntegrationTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.KairosApiPostgresApplicationTests",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.mapper.CustomerMapperTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.mapper.EmployeeMapperTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.mapper.UserMapperTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.PostgresDatabaseIntegrationTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.SerialIdMappingTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.AlertServiceTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.CustomerServiceTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.EmployeeServiceTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.InventoryServiceTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.ListQueryPerformanceIntegrationTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.ManagerBootstrapTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.MapListQueryPerformanceIntegrationTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.ProductServiceTest",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.PurchaseServiceTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.RestockingHistoryIntegrationTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.RestockingRedisClientTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.service.UserServiceTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.utils.CpfFormatterTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.kairos.kairosapipostgres.utils.CpfValidatorTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "totals": {
+    "tests": 251,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "coverage": {
+    "INSTRUCTION": {
+      "missed": 902,
+      "covered": 9515
+    },
+    "BRANCH": {
+      "missed": 142,
+      "covered": 509
+    },
+    "LINE": {
+      "missed": 118,
+      "covered": 1840
+    },
+    "COMPLEXITY": {
+      "missed": 241,
+      "covered": 740
+    },
+    "METHOD": {
+      "missed": 105,
+      "covered": 550
+    },
+    "CLASS": {
+      "missed": 6,
+      "covered": 164
+    }
+  },
+  "spotbugs_bugs": 0,
+  "checkstyle_errors": 0
+}

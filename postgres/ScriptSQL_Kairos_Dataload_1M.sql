@@ -1,6 +1,6 @@
 -- ============================================================
 
--- KAIROS - DATALOAD COM 1.000.000 DE REGISTROS
+-- KAIROS - DATALOAD COM 1.050.000 DE REGISTROS
 
 -- PostgreSQL
 
@@ -34,7 +34,7 @@
 
 -- Triggers de auditoria de Products/Purchases são temporariamente
 
--- desabilitados para manter o total EXATO em 1.000.000.
+-- desabilitados para manter o total EXATO em 1.050.000.
 
 --
 
@@ -80,7 +80,7 @@
 
 -- --------------------------------
 
--- TOTAL                 1.000.000
+-- TOTAL                 1.050.000
 
 -- ============================================================
 
@@ -632,7 +632,9 @@ SELECT
 
       WHEN ((g-1)%3)+1 = 1 THEN NULL
 
-      ELSE TIMESTAMP '2025-01-02 10:00:00' + (g * INTERVAL '17 minutes')
+      -- Resolution belongs to its opening day, never before stockout_date.
+      ELSE (DATE '2025-01-01' + ((g*13)%600)) + TIME '10:00:00'
+           + ((g*17)%600) * INTERVAL '1 minute'
 
     END
 
@@ -796,7 +798,7 @@ COMMIT;
 
 -- VALIDAÇÃO DO TOTAL
 
--- Deve retornar exatamente 1.000.000
+-- Deve retornar exatamente 1.050.000
 
 -- ============================================================
 
