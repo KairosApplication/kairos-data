@@ -22,3 +22,16 @@ Scripts e documentação das collections do MongoDB Atlas.
 
 docs/
 Documentação do banco, regras de negócio e dicionário de dados.
+
+<!-- docs-bot:start -->
+## Documentação
+
+- [Revisão final de Modelagem — Kairos](docs/FINAL_MODELAGEM_REVIEW.md)
+- [Kairos | Entregas restantes de Modelagem e Engenharia de Dados](docs/README.md)
+- [Kairos — Procedimento e evidência de backup e recuperação](docs/backup_recuperacao.md)
+- [Demonstração de 02/11/2026](docs/demo_datas.md)
+- [Testes executados em 02/11/2026](docs/demo_test_results.md)
+- [Kairos | Contrato de integração DAU com backend](docs/integracao_dau_backend.md)
+- [Normalização e cardinalidades — análise final, 02/11/2026](docs/normalizacao_cardinalidades.md)
+- [Performance final — PostgreSQL, 02/11/2026](docs/performance_final.md)
+<!-- docs-bot:end -->
