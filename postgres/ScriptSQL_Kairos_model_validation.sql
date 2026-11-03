@@ -70,6 +70,29 @@ JOIN Customers c ON c.id = pu.customer_id
 JOIN Products p ON p.id = pp.product_id
 WHERE c.company_id <> p.company_id;
 
+-- Relacionamentos adicionais: FK individual nao aplica coerencia empresarial.
+SELECT 'inventory_employee_company' AS check_name, count(*) AS problems
+FROM Inventory_Employees x JOIN Inventories i ON i.id=x.inventory_id
+JOIN Employees e ON e.id=x.employee_id WHERE i.company_id<>e.company_id
+UNION ALL
+SELECT 'shelf_employee_company',count(*) FROM Shelf_Employees x
+JOIN Employees e ON e.id=x.employee_id JOIN Shelves sh ON sh.id=x.shelf_id
+JOIN Aisles a ON a.id=sh.aisle_id JOIN Sectors s ON s.id=a.sector_id WHERE e.company_id<>s.company_id
+UNION ALL
+SELECT 'restocking_shelf_company',count(*) FROM Restockings r
+JOIN Employees e ON e.id=r.employee_id JOIN Shelves sh ON sh.id=r.shelf_id
+JOIN Aisles a ON a.id=sh.aisle_id JOIN Sectors s ON s.id=a.sector_id WHERE e.company_id<>s.company_id
+UNION ALL
+SELECT 'alert_company',count(*) FROM Alerts x JOIN Shelves sh ON sh.id=x.shelf_id
+JOIN Aisles a ON a.id=sh.aisle_id JOIN Sectors s ON s.id=a.sector_id
+LEFT JOIN Employees e ON e.id=x.employee_id LEFT JOIN Products p ON p.id=x.product_id
+WHERE e.company_id<>s.company_id OR p.company_id<>s.company_id
+UNION ALL
+SELECT 'damages_exceed_quantity',count(*) FROM Restockings WHERE qnt_avarias>restocked_quantity
+UNION ALL
+SELECT 'resolved_alert_chronology',count(*) FROM Alerts
+WHERE status='RESOLVED' AND (resolution_date IS NULL OR resolution_date<stockout_date::timestamp);
+
 -- Ver cardinalidade tecnica (FKs de todas as tabelas).
 SELECT tc.table_name AS child_table, kcu.column_name AS fk_column,
        ccu.table_name AS parent_table, ccu.column_name AS parent_column

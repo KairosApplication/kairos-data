@@ -1,0 +1,1246 @@
+{
+  "server_version": "17.11 (Debian 17.11-1.pgdg13+2)",
+  "runs": 7,
+  "warmups": 2,
+  "indexes_before": [
+    [
+      "aisles_pkey",
+      "CREATE UNIQUE INDEX aisles_pkey ON public.aisles USING btree (id)"
+    ],
+    [
+      "aisles_sector_id_position_key",
+      "CREATE UNIQUE INDEX aisles_sector_id_position_key ON public.aisles USING btree (sector_id, \"position\")"
+    ],
+    [
+      "alerts_pkey",
+      "CREATE UNIQUE INDEX alerts_pkey ON public.alerts USING btree (id)"
+    ],
+    [
+      "audits_pkey",
+      "CREATE UNIQUE INDEX audits_pkey ON public.audits USING btree (id)"
+    ],
+    [
+      "categories_company_id_category_key",
+      "CREATE UNIQUE INDEX categories_company_id_category_key ON public.categories USING btree (company_id, category)"
+    ],
+    [
+      "categories_pkey",
+      "CREATE UNIQUE INDEX categories_pkey ON public.categories USING btree (id)"
+    ],
+    [
+      "companies_cnpj_key",
+      "CREATE UNIQUE INDEX companies_cnpj_key ON public.companies USING btree (cnpj)"
+    ],
+    [
+      "companies_email_key",
+      "CREATE UNIQUE INDEX companies_email_key ON public.companies USING btree (email)"
+    ],
+    [
+      "companies_pkey",
+      "CREATE UNIQUE INDEX companies_pkey ON public.companies USING btree (id)"
+    ],
+    [
+      "customers_pkey",
+      "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (id)"
+    ],
+    [
+      "customers_users_id_key",
+      "CREATE UNIQUE INDEX customers_users_id_key ON public.customers USING btree (users_id)"
+    ],
+    [
+      "employee_aisles_employee_id_aisle_id_key",
+      "CREATE UNIQUE INDEX employee_aisles_employee_id_aisle_id_key ON public.employee_aisles USING btree (employee_id, aisle_id)"
+    ],
+    [
+      "employee_aisles_pkey",
+      "CREATE UNIQUE INDEX employee_aisles_pkey ON public.employee_aisles USING btree (id)"
+    ],
+    [
+      "employees_pkey",
+      "CREATE UNIQUE INDEX employees_pkey ON public.employees USING btree (id)"
+    ],
+    [
+      "employees_users_id_key",
+      "CREATE UNIQUE INDEX employees_users_id_key ON public.employees USING btree (users_id)"
+    ],
+    [
+      "idx_user_accesses_company_date",
+      "CREATE INDEX idx_user_accesses_company_date ON public.user_accesses USING btree (company_id, access_date)"
+    ],
+    [
+      "inventories_pkey",
+      "CREATE UNIQUE INDEX inventories_pkey ON public.inventories USING btree (id)"
+    ],
+    [
+      "inventory_employees_inventory_id_employee_id_key",
+      "CREATE UNIQUE INDEX inventory_employees_inventory_id_employee_id_key ON public.inventory_employees USING btree (inventory_id, employee_id)"
+    ],
+    [
+      "inventory_employees_pkey",
+      "CREATE UNIQUE INDEX inventory_employees_pkey ON public.inventory_employees USING btree (id)"
+    ],
+    [
+      "product_inventories_inventory_id_product_id_key",
+      "CREATE UNIQUE INDEX product_inventories_inventory_id_product_id_key ON public.product_inventories USING btree (inventory_id, product_id)"
+    ],
+    [
+      "product_inventories_pkey",
+      "CREATE UNIQUE INDEX product_inventories_pkey ON public.product_inventories USING btree (id)"
+    ],
+    [
+      "product_shelves_pkey",
+      "CREATE UNIQUE INDEX product_shelves_pkey ON public.product_shelves USING btree (id)"
+    ],
+    [
+      "product_shelves_product_id_shelf_id_key",
+      "CREATE UNIQUE INDEX product_shelves_product_id_shelf_id_key ON public.product_shelves USING btree (product_id, shelf_id)"
+    ],
+    [
+      "products_pkey",
+      "CREATE UNIQUE INDEX products_pkey ON public.products USING btree (id)"
+    ],
+    [
+      "purchase_products_pkey",
+      "CREATE UNIQUE INDEX purchase_products_pkey ON public.purchase_products USING btree (id)"
+    ],
+    [
+      "purchase_products_purchase_id_product_id_key",
+      "CREATE UNIQUE INDEX purchase_products_purchase_id_product_id_key ON public.purchase_products USING btree (purchase_id, product_id)"
+    ],
+    [
+      "purchases_pkey",
+      "CREATE UNIQUE INDEX purchases_pkey ON public.purchases USING btree (id)"
+    ],
+    [
+      "restockings_pkey",
+      "CREATE UNIQUE INDEX restockings_pkey ON public.restockings USING btree (id)"
+    ],
+    [
+      "sectors_company_id_name_key",
+      "CREATE UNIQUE INDEX sectors_company_id_name_key ON public.sectors USING btree (company_id, name)"
+    ],
+    [
+      "sectors_pkey",
+      "CREATE UNIQUE INDEX sectors_pkey ON public.sectors USING btree (id)"
+    ],
+    [
+      "shelf_employees_pkey",
+      "CREATE UNIQUE INDEX shelf_employees_pkey ON public.shelf_employees USING btree (id)"
+    ],
+    [
+      "shelf_employees_shelf_id_employee_id_key",
+      "CREATE UNIQUE INDEX shelf_employees_shelf_id_employee_id_key ON public.shelf_employees USING btree (shelf_id, employee_id)"
+    ],
+    [
+      "shelves_pkey",
+      "CREATE UNIQUE INDEX shelves_pkey ON public.shelves USING btree (id)"
+    ],
+    [
+      "user_accesses_pkey",
+      "CREATE UNIQUE INDEX user_accesses_pkey ON public.user_accesses USING btree (id)"
+    ],
+    [
+      "user_accesses_user_id_company_id_access_date_key",
+      "CREATE UNIQUE INDEX user_accesses_user_id_company_id_access_date_key ON public.user_accesses USING btree (user_id, company_id, access_date)"
+    ],
+    [
+      "users_cpf_key",
+      "CREATE UNIQUE INDEX users_cpf_key ON public.users USING btree (cpf)"
+    ],
+    [
+      "users_email_key",
+      "CREATE UNIQUE INDEX users_email_key ON public.users USING btree (email)"
+    ],
+    [
+      "users_pkey",
+      "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)"
+    ]
+  ],
+  "queries": {
+    "restockings": {
+      "sql": "SELECT id,employee_id,product_id,restocking_date FROM restockings WHERE employee_id=101 ORDER BY restocking_date DESC LIMIT 25",
+      "before": {
+        "median_ms": 2.147,
+        "execution_ms": [
+          2.31,
+          2.29,
+          2.281,
+          2.13,
+          2.097,
+          2.147,
+          2.028
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 1042.01,
+            "Total Cost": 1042.02,
+            "Plan Rows": 1,
+            "Plan Width": 20,
+            "Actual Startup Time": 2.12,
+            "Actual Total Time": 2.121,
+            "Actual Rows": 2,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 417,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 1042.01,
+                "Total Cost": 1042.02,
+                "Plan Rows": 1,
+                "Plan Width": 20,
+                "Actual Startup Time": 2.12,
+                "Actual Total Time": 2.12,
+                "Actual Rows": 2,
+                "Actual Loops": 1,
+                "Sort Key": [
+                  "restocking_date DESC"
+                ],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 25,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 417,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "restockings",
+                    "Alias": "restockings",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 1042.0,
+                    "Plan Rows": 1,
+                    "Plan Width": 20,
+                    "Actual Startup Time": 0.004,
+                    "Actual Total Time": 2.11,
+                    "Actual Rows": 2,
+                    "Actual Loops": 1,
+                    "Filter": "(employee_id = 101)",
+                    "Rows Removed by Filter": 49998,
+                    "Shared Hit Blocks": 417,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.027,
+          "Triggers": [],
+          "Execution Time": 2.13
+        },
+        "rows": 2
+      },
+      "results_equal": true,
+      "after": {
+        "median_ms": 0.012,
+        "execution_ms": [
+          0.012,
+          0.012,
+          0.012,
+          0.012,
+          0.012,
+          0.012,
+          0.012
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 0.29,
+            "Total Cost": 8.31,
+            "Plan Rows": 1,
+            "Plan Width": 20,
+            "Actual Startup Time": 0.005,
+            "Actual Total Time": 0.006,
+            "Actual Rows": 2,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 4,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Index Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "idx_restockings_employee_date",
+                "Relation Name": "restockings",
+                "Alias": "restockings",
+                "Startup Cost": 0.29,
+                "Total Cost": 8.31,
+                "Plan Rows": 1,
+                "Plan Width": 20,
+                "Actual Startup Time": 0.005,
+                "Actual Total Time": 0.005,
+                "Actual Rows": 2,
+                "Actual Loops": 1,
+                "Index Cond": "(employee_id = 101)",
+                "Rows Removed by Index Recheck": 0,
+                "Shared Hit Blocks": 4,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.025,
+          "Triggers": [],
+          "Execution Time": 0.012
+        },
+        "rows": 2
+      }
+    },
+    "open_alerts": {
+      "sql": "SELECT id,employee_id,shelf_id,stockout_date FROM alerts WHERE employee_id=101 AND status='OPEN' ORDER BY stockout_date DESC LIMIT 25",
+      "before": {
+        "median_ms": 1.26,
+        "execution_ms": [
+          1.336,
+          1.293,
+          1.26,
+          1.184,
+          1.251,
+          1.227,
+          1.422
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 671.01,
+            "Total Cost": 671.01,
+            "Plan Rows": 1,
+            "Plan Width": 16,
+            "Actual Startup Time": 1.176,
+            "Actual Total Time": 1.177,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 371,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 671.01,
+                "Total Cost": 671.01,
+                "Plan Rows": 1,
+                "Plan Width": 16,
+                "Actual Startup Time": 1.176,
+                "Actual Total Time": 1.176,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Sort Key": [
+                  "stockout_date DESC"
+                ],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 25,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 371,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "alerts",
+                    "Alias": "alerts",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 671.0,
+                    "Plan Rows": 1,
+                    "Plan Width": 16,
+                    "Actual Startup Time": 0.005,
+                    "Actual Total Time": 1.174,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Filter": "((employee_id = 101) AND ((status)::text = 'OPEN'::text))",
+                    "Rows Removed by Filter": 19999,
+                    "Shared Hit Blocks": 371,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.03,
+          "Triggers": [],
+          "Execution Time": 1.184
+        },
+        "rows": 1
+      },
+      "results_equal": true,
+      "after": {
+        "median_ms": 0.014,
+        "execution_ms": [
+          0.011,
+          0.018,
+          0.012,
+          0.016,
+          0.015,
+          0.014,
+          0.013
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 0.28,
+            "Total Cost": 8.3,
+            "Plan Rows": 1,
+            "Plan Width": 16,
+            "Actual Startup Time": 0.007,
+            "Actual Total Time": 0.008,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Index Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "idx_alerts_open_employee_date",
+                "Relation Name": "alerts",
+                "Alias": "alerts",
+                "Startup Cost": 0.28,
+                "Total Cost": 8.3,
+                "Plan Rows": 1,
+                "Plan Width": 16,
+                "Actual Startup Time": 0.006,
+                "Actual Total Time": 0.007,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Index Cond": "(employee_id = 101)",
+                "Rows Removed by Index Recheck": 0,
+                "Shared Hit Blocks": 3,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.045,
+          "Triggers": [],
+          "Execution Time": 0.016
+        },
+        "rows": 1
+      }
+    },
+    "product_inventory": {
+      "sql": "SELECT inventory_id,product_id,product_quantity FROM product_inventories WHERE product_id=1",
+      "before": {
+        "median_ms": 4.168,
+        "execution_ms": [
+          4.168,
+          4.597,
+          4.067,
+          3.891,
+          4.354,
+          4.296,
+          4.059
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Seq Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Relation Name": "product_inventories",
+            "Alias": "product_inventories",
+            "Startup Cost": 0.0,
+            "Total Cost": 1791.0,
+            "Plan Rows": 10,
+            "Plan Width": 12,
+            "Actual Startup Time": 0.004,
+            "Actual Total Time": 3.885,
+            "Actual Rows": 10,
+            "Actual Loops": 1,
+            "Filter": "(product_id = 1)",
+            "Rows Removed by Filter": 99990,
+            "Shared Hit Blocks": 541,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.026,
+          "Triggers": [],
+          "Execution Time": 3.891
+        },
+        "rows": 10
+      },
+      "results_equal": true,
+      "after": {
+        "median_ms": 0.011,
+        "execution_ms": [
+          0.014,
+          0.011,
+          0.012,
+          0.011,
+          0.012,
+          0.011,
+          0.01
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Index Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Scan Direction": "Forward",
+            "Index Name": "idx_product_inventories_product",
+            "Relation Name": "product_inventories",
+            "Alias": "product_inventories",
+            "Startup Cost": 0.29,
+            "Total Cost": 8.47,
+            "Plan Rows": 10,
+            "Plan Width": 12,
+            "Actual Startup Time": 0.004,
+            "Actual Total Time": 0.006,
+            "Actual Rows": 10,
+            "Actual Loops": 1,
+            "Index Cond": "(product_id = 1)",
+            "Rows Removed by Index Recheck": 0,
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.023,
+          "Triggers": [],
+          "Execution Time": 0.011
+        },
+        "rows": 10
+      }
+    },
+    "customer_purchases": {
+      "sql": "SELECT id,date,status FROM purchases WHERE customer_id=1 ORDER BY date DESC LIMIT 25",
+      "before": {
+        "median_ms": 0.945,
+        "execution_ms": [
+          1.044,
+          1.058,
+          1.008,
+          0.941,
+          0.931,
+          0.921,
+          0.945
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 496.51,
+            "Total Cost": 496.51,
+            "Plan Rows": 1,
+            "Plan Width": 22,
+            "Actual Startup Time": 0.934,
+            "Actual Total Time": 0.935,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 184,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 496.51,
+                "Total Cost": 496.51,
+                "Plan Rows": 1,
+                "Plan Width": 22,
+                "Actual Startup Time": 0.934,
+                "Actual Total Time": 0.934,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Sort Key": [
+                  "date DESC"
+                ],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 25,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 184,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "purchases",
+                    "Alias": "purchases",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 496.5,
+                    "Plan Rows": 1,
+                    "Plan Width": 22,
+                    "Actual Startup Time": 0.004,
+                    "Actual Total Time": 0.932,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Filter": "(customer_id = 1)",
+                    "Rows Removed by Filter": 24999,
+                    "Shared Hit Blocks": 184,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.022,
+          "Triggers": [],
+          "Execution Time": 0.941
+        },
+        "rows": 1
+      },
+      "results_equal": true,
+      "after": {
+        "median_ms": 0.009,
+        "execution_ms": [
+          0.011,
+          0.01,
+          0.009,
+          0.009,
+          0.009,
+          0.009,
+          0.009
+        ],
+        "representative_plan": {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 0.29,
+            "Total Cost": 8.3,
+            "Plan Rows": 1,
+            "Plan Width": 22,
+            "Actual Startup Time": 0.004,
+            "Actual Total Time": 0.005,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Index Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "idx_purchases_customer_date",
+                "Relation Name": "purchases",
+                "Alias": "purchases",
+                "Startup Cost": 0.29,
+                "Total Cost": 8.3,
+                "Plan Rows": 1,
+                "Plan Width": 22,
+                "Actual Startup Time": 0.003,
+                "Actual Total Time": 0.004,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Index Cond": "(customer_id = 1)",
+                "Rows Removed by Index Recheck": 0,
+                "Shared Hit Blocks": 3,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.021,
+          "Triggers": [],
+          "Execution Time": 0.009
+        },
+        "rows": 1
+      }
+    }
+  },
+  "index_definitions": {
+    "idx_restockings_employee_date": "restockings(employee_id,restocking_date DESC)",
+    "idx_alerts_open_employee_date": "alerts(employee_id,stockout_date DESC) WHERE status='OPEN'",
+    "idx_product_inventories_product": "product_inventories(product_id)",
+    "idx_purchases_customer_date": "purchases(customer_id,date DESC)"
+  },
+  "row_counts": {
+    "aisles": 10000,
+    "alerts": 20000,
+    "audits": 0,
+    "categories": 2000,
+    "companies": 100,
+    "customers": 150000,
+    "employee_aisles": 50000,
+    "employees": 50000,
+    "inventories": 1000,
+    "inventory_employees": 50000,
+    "product_inventories": 100000,
+    "product_shelves": 100000,
+    "products": 80000,
+    "purchase_products": 10900,
+    "purchases": 25000,
+    "restockings": 50000,
+    "sectors": 1000,
+    "shelf_employees": 50000,
+    "shelves": 50000,
+    "user_accesses": 0,
+    "users": 250000
+  },
+  "indexes_during_test": [
+    [
+      "aisles_pkey",
+      "CREATE UNIQUE INDEX aisles_pkey ON public.aisles USING btree (id)"
+    ],
+    [
+      "aisles_sector_id_position_key",
+      "CREATE UNIQUE INDEX aisles_sector_id_position_key ON public.aisles USING btree (sector_id, \"position\")"
+    ],
+    [
+      "alerts_pkey",
+      "CREATE UNIQUE INDEX alerts_pkey ON public.alerts USING btree (id)"
+    ],
+    [
+      "audits_pkey",
+      "CREATE UNIQUE INDEX audits_pkey ON public.audits USING btree (id)"
+    ],
+    [
+      "categories_company_id_category_key",
+      "CREATE UNIQUE INDEX categories_company_id_category_key ON public.categories USING btree (company_id, category)"
+    ],
+    [
+      "categories_pkey",
+      "CREATE UNIQUE INDEX categories_pkey ON public.categories USING btree (id)"
+    ],
+    [
+      "companies_cnpj_key",
+      "CREATE UNIQUE INDEX companies_cnpj_key ON public.companies USING btree (cnpj)"
+    ],
+    [
+      "companies_email_key",
+      "CREATE UNIQUE INDEX companies_email_key ON public.companies USING btree (email)"
+    ],
+    [
+      "companies_pkey",
+      "CREATE UNIQUE INDEX companies_pkey ON public.companies USING btree (id)"
+    ],
+    [
+      "customers_pkey",
+      "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (id)"
+    ],
+    [
+      "customers_users_id_key",
+      "CREATE UNIQUE INDEX customers_users_id_key ON public.customers USING btree (users_id)"
+    ],
+    [
+      "employee_aisles_employee_id_aisle_id_key",
+      "CREATE UNIQUE INDEX employee_aisles_employee_id_aisle_id_key ON public.employee_aisles USING btree (employee_id, aisle_id)"
+    ],
+    [
+      "employee_aisles_pkey",
+      "CREATE UNIQUE INDEX employee_aisles_pkey ON public.employee_aisles USING btree (id)"
+    ],
+    [
+      "employees_pkey",
+      "CREATE UNIQUE INDEX employees_pkey ON public.employees USING btree (id)"
+    ],
+    [
+      "employees_users_id_key",
+      "CREATE UNIQUE INDEX employees_users_id_key ON public.employees USING btree (users_id)"
+    ],
+    [
+      "idx_alerts_open_employee_date",
+      "CREATE INDEX idx_alerts_open_employee_date ON public.alerts USING btree (employee_id, stockout_date DESC) WHERE ((status)::text = 'OPEN'::text)"
+    ],
+    [
+      "idx_product_inventories_product",
+      "CREATE INDEX idx_product_inventories_product ON public.product_inventories USING btree (product_id)"
+    ],
+    [
+      "idx_purchases_customer_date",
+      "CREATE INDEX idx_purchases_customer_date ON public.purchases USING btree (customer_id, date DESC)"
+    ],
+    [
+      "idx_restockings_employee_date",
+      "CREATE INDEX idx_restockings_employee_date ON public.restockings USING btree (employee_id, restocking_date DESC)"
+    ],
+    [
+      "idx_user_accesses_company_date",
+      "CREATE INDEX idx_user_accesses_company_date ON public.user_accesses USING btree (company_id, access_date)"
+    ],
+    [
+      "inventories_pkey",
+      "CREATE UNIQUE INDEX inventories_pkey ON public.inventories USING btree (id)"
+    ],
+    [
+      "inventory_employees_inventory_id_employee_id_key",
+      "CREATE UNIQUE INDEX inventory_employees_inventory_id_employee_id_key ON public.inventory_employees USING btree (inventory_id, employee_id)"
+    ],
+    [
+      "inventory_employees_pkey",
+      "CREATE UNIQUE INDEX inventory_employees_pkey ON public.inventory_employees USING btree (id)"
+    ],
+    [
+      "product_inventories_inventory_id_product_id_key",
+      "CREATE UNIQUE INDEX product_inventories_inventory_id_product_id_key ON public.product_inventories USING btree (inventory_id, product_id)"
+    ],
+    [
+      "product_inventories_pkey",
+      "CREATE UNIQUE INDEX product_inventories_pkey ON public.product_inventories USING btree (id)"
+    ],
+    [
+      "product_shelves_pkey",
+      "CREATE UNIQUE INDEX product_shelves_pkey ON public.product_shelves USING btree (id)"
+    ],
+    [
+      "product_shelves_product_id_shelf_id_key",
+      "CREATE UNIQUE INDEX product_shelves_product_id_shelf_id_key ON public.product_shelves USING btree (product_id, shelf_id)"
+    ],
+    [
+      "products_pkey",
+      "CREATE UNIQUE INDEX products_pkey ON public.products USING btree (id)"
+    ],
+    [
+      "purchase_products_pkey",
+      "CREATE UNIQUE INDEX purchase_products_pkey ON public.purchase_products USING btree (id)"
+    ],
+    [
+      "purchase_products_purchase_id_product_id_key",
+      "CREATE UNIQUE INDEX purchase_products_purchase_id_product_id_key ON public.purchase_products USING btree (purchase_id, product_id)"
+    ],
+    [
+      "purchases_pkey",
+      "CREATE UNIQUE INDEX purchases_pkey ON public.purchases USING btree (id)"
+    ],
+    [
+      "restockings_pkey",
+      "CREATE UNIQUE INDEX restockings_pkey ON public.restockings USING btree (id)"
+    ],
+    [
+      "sectors_company_id_name_key",
+      "CREATE UNIQUE INDEX sectors_company_id_name_key ON public.sectors USING btree (company_id, name)"
+    ],
+    [
+      "sectors_pkey",
+      "CREATE UNIQUE INDEX sectors_pkey ON public.sectors USING btree (id)"
+    ],
+    [
+      "shelf_employees_pkey",
+      "CREATE UNIQUE INDEX shelf_employees_pkey ON public.shelf_employees USING btree (id)"
+    ],
+    [
+      "shelf_employees_shelf_id_employee_id_key",
+      "CREATE UNIQUE INDEX shelf_employees_shelf_id_employee_id_key ON public.shelf_employees USING btree (shelf_id, employee_id)"
+    ],
+    [
+      "shelves_pkey",
+      "CREATE UNIQUE INDEX shelves_pkey ON public.shelves USING btree (id)"
+    ],
+    [
+      "user_accesses_pkey",
+      "CREATE UNIQUE INDEX user_accesses_pkey ON public.user_accesses USING btree (id)"
+    ],
+    [
+      "user_accesses_user_id_company_id_access_date_key",
+      "CREATE UNIQUE INDEX user_accesses_user_id_company_id_access_date_key ON public.user_accesses USING btree (user_id, company_id, access_date)"
+    ],
+    [
+      "users_cpf_key",
+      "CREATE UNIQUE INDEX users_cpf_key ON public.users USING btree (cpf)"
+    ],
+    [
+      "users_email_key",
+      "CREATE UNIQUE INDEX users_email_key ON public.users USING btree (email)"
+    ],
+    [
+      "users_pkey",
+      "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)"
+    ]
+  ],
+  "indexes_after_rollback": [
+    [
+      "aisles_pkey",
+      "CREATE UNIQUE INDEX aisles_pkey ON public.aisles USING btree (id)"
+    ],
+    [
+      "aisles_sector_id_position_key",
+      "CREATE UNIQUE INDEX aisles_sector_id_position_key ON public.aisles USING btree (sector_id, \"position\")"
+    ],
+    [
+      "alerts_pkey",
+      "CREATE UNIQUE INDEX alerts_pkey ON public.alerts USING btree (id)"
+    ],
+    [
+      "audits_pkey",
+      "CREATE UNIQUE INDEX audits_pkey ON public.audits USING btree (id)"
+    ],
+    [
+      "categories_company_id_category_key",
+      "CREATE UNIQUE INDEX categories_company_id_category_key ON public.categories USING btree (company_id, category)"
+    ],
+    [
+      "categories_pkey",
+      "CREATE UNIQUE INDEX categories_pkey ON public.categories USING btree (id)"
+    ],
+    [
+      "companies_cnpj_key",
+      "CREATE UNIQUE INDEX companies_cnpj_key ON public.companies USING btree (cnpj)"
+    ],
+    [
+      "companies_email_key",
+      "CREATE UNIQUE INDEX companies_email_key ON public.companies USING btree (email)"
+    ],
+    [
+      "companies_pkey",
+      "CREATE UNIQUE INDEX companies_pkey ON public.companies USING btree (id)"
+    ],
+    [
+      "customers_pkey",
+      "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (id)"
+    ],
+    [
+      "customers_users_id_key",
+      "CREATE UNIQUE INDEX customers_users_id_key ON public.customers USING btree (users_id)"
+    ],
+    [
+      "employee_aisles_employee_id_aisle_id_key",
+      "CREATE UNIQUE INDEX employee_aisles_employee_id_aisle_id_key ON public.employee_aisles USING btree (employee_id, aisle_id)"
+    ],
+    [
+      "employee_aisles_pkey",
+      "CREATE UNIQUE INDEX employee_aisles_pkey ON public.employee_aisles USING btree (id)"
+    ],
+    [
+      "employees_pkey",
+      "CREATE UNIQUE INDEX employees_pkey ON public.employees USING btree (id)"
+    ],
+    [
+      "employees_users_id_key",
+      "CREATE UNIQUE INDEX employees_users_id_key ON public.employees USING btree (users_id)"
+    ],
+    [
+      "idx_user_accesses_company_date",
+      "CREATE INDEX idx_user_accesses_company_date ON public.user_accesses USING btree (company_id, access_date)"
+    ],
+    [
+      "inventories_pkey",
+      "CREATE UNIQUE INDEX inventories_pkey ON public.inventories USING btree (id)"
+    ],
+    [
+      "inventory_employees_inventory_id_employee_id_key",
+      "CREATE UNIQUE INDEX inventory_employees_inventory_id_employee_id_key ON public.inventory_employees USING btree (inventory_id, employee_id)"
+    ],
+    [
+      "inventory_employees_pkey",
+      "CREATE UNIQUE INDEX inventory_employees_pkey ON public.inventory_employees USING btree (id)"
+    ],
+    [
+      "product_inventories_inventory_id_product_id_key",
+      "CREATE UNIQUE INDEX product_inventories_inventory_id_product_id_key ON public.product_inventories USING btree (inventory_id, product_id)"
+    ],
+    [
+      "product_inventories_pkey",
+      "CREATE UNIQUE INDEX product_inventories_pkey ON public.product_inventories USING btree (id)"
+    ],
+    [
+      "product_shelves_pkey",
+      "CREATE UNIQUE INDEX product_shelves_pkey ON public.product_shelves USING btree (id)"
+    ],
+    [
+      "product_shelves_product_id_shelf_id_key",
+      "CREATE UNIQUE INDEX product_shelves_product_id_shelf_id_key ON public.product_shelves USING btree (product_id, shelf_id)"
+    ],
+    [
+      "products_pkey",
+      "CREATE UNIQUE INDEX products_pkey ON public.products USING btree (id)"
+    ],
+    [
+      "purchase_products_pkey",
+      "CREATE UNIQUE INDEX purchase_products_pkey ON public.purchase_products USING btree (id)"
+    ],
+    [
+      "purchase_products_purchase_id_product_id_key",
+      "CREATE UNIQUE INDEX purchase_products_purchase_id_product_id_key ON public.purchase_products USING btree (purchase_id, product_id)"
+    ],
+    [
+      "purchases_pkey",
+      "CREATE UNIQUE INDEX purchases_pkey ON public.purchases USING btree (id)"
+    ],
+    [
+      "restockings_pkey",
+      "CREATE UNIQUE INDEX restockings_pkey ON public.restockings USING btree (id)"
+    ],
+    [
+      "sectors_company_id_name_key",
+      "CREATE UNIQUE INDEX sectors_company_id_name_key ON public.sectors USING btree (company_id, name)"
+    ],
+    [
+      "sectors_pkey",
+      "CREATE UNIQUE INDEX sectors_pkey ON public.sectors USING btree (id)"
+    ],
+    [
+      "shelf_employees_pkey",
+      "CREATE UNIQUE INDEX shelf_employees_pkey ON public.shelf_employees USING btree (id)"
+    ],
+    [
+      "shelf_employees_shelf_id_employee_id_key",
+      "CREATE UNIQUE INDEX shelf_employees_shelf_id_employee_id_key ON public.shelf_employees USING btree (shelf_id, employee_id)"
+    ],
+    [
+      "shelves_pkey",
+      "CREATE UNIQUE INDEX shelves_pkey ON public.shelves USING btree (id)"
+    ],
+    [
+      "user_accesses_pkey",
+      "CREATE UNIQUE INDEX user_accesses_pkey ON public.user_accesses USING btree (id)"
+    ],
+    [
+      "user_accesses_user_id_company_id_access_date_key",
+      "CREATE UNIQUE INDEX user_accesses_user_id_company_id_access_date_key ON public.user_accesses USING btree (user_id, company_id, access_date)"
+    ],
+    [
+      "users_cpf_key",
+      "CREATE UNIQUE INDEX users_cpf_key ON public.users USING btree (cpf)"
+    ],
+    [
+      "users_email_key",
+      "CREATE UNIQUE INDEX users_email_key ON public.users USING btree (email)"
+    ],
+    [
+      "users_pkey",
+      "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)"
+    ]
+  ]
+}
